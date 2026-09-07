@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://c75jf3rs3t6up"]
+
+[ext_resource type="Texture2D" uid="uid://cqsh0tyy4n0hn" path="res://Sprites/empty-square-place-holders/empty_square_white_64×64.png" id="1_34ygh"]
+[ext_resource type="Script" uid="uid://bil6eoyev8sa0" path="res://Scenes/UI/base_ui.gd" id="1_usrxl"]
+
+[node name="Control" type="Control" unique_id=436372168]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 115.0
+offset_top = 5.0
+offset_right = 115.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_usrxl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=278554943]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 40.0
+theme_override_constants/separation = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=521447757]
+layout_mode = 2
+bbcode_enabled = true
+text = "asdfdasfadsfd "
+fit_content = true
+
+[node name="canvas" type="TextureRect" parent="." unique_id=1540754789]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_34ygh")
