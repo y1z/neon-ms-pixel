@@ -3,12 +3,16 @@ extends Control
 const DEFAULT_TEXTURE_SIZE: Vector2i = Vector2i(64, 64)
 
 var pixel_canvas: PixelCanvas
+var state: Enums.GameState
 
 
 func _ready() -> void:
 	pixel_canvas = %canvas
 	pixel_canvas.startup(GlobalsConstants.DEFAULT_SIZE)
 	pixel_canvas.gui_input.connect(cb_gui_input)
+	var state_man : StateManager = SystemsLocator.get_state_manager() 
+	state = state_man.get_current_state()
+	state_man.state_change.connect(cb_state_change)
 	pass # Replace with function body.
 
 
@@ -21,6 +25,8 @@ func cb_gui_input(event: InputEvent) -> void:
 		print(event)
 	return
 
+func cb_state_change(new_state:Enums.GameState) -> void:
+	state = new_state
 
 #region HANDLE 
 func handle_mouse_motion(mouse_event: InputEventMouseMotion) -> void:

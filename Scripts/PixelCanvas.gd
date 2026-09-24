@@ -24,7 +24,7 @@ func change_image_size(new_size_:Vector2i,interpolation: Image.Interpolation = G
 func color_pixel(x: int, y: int, color: Color) -> bool:
 	var p_width := pixel_image.get_width()
 	var p_height := pixel_image.get_height()
-	if x < p_width  and y < pixel_image.get_height():
+	if x < p_width  and y < p_height:
 		pixel_image.set_pixel(x, y, color)
 		self.texture.update(pixel_image)
 		return true

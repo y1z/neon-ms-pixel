@@ -20,3 +20,6 @@ func debug_string() -> String:
 
 func debug_print() -> void:
 	print(debug_string())
+
+func get_current_state() -> Enums.GameState:
+	return __current_state

@@ -9,7 +9,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	state_man = SystemsLocator.get_state_manager()
-	state_man.state_change.connect(_on_state_change)
+	state_man.state_change.connect(cb_state_change)
 	
 	camera = BasicCamera.new()
 	add_child(camera)
@@ -18,5 +18,5 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	SystemsLocator.shutdown()
 
-func _on_state_change(new_state:Enums.GameState) -> void:
+func cb_state_change(new_state:Enums.GameState) -> void:
 	state = new_state
