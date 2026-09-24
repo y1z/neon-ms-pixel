@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bx4u0g2kit1a6"]
+
+[node name="CameraUi" type="Control" unique_id=424274556]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="." unique_id=1753092282]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

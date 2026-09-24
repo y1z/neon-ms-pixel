@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ccxgo2ke54yal"]
+
+[ext_resource type="Script" uid="uid://ddtf5st27gta8" path="res://Scripts/CameraWithUI.gd" id="1_5nj3a"]
+
+[node name="CameraWithUi" type="Camera2D" unique_id=1546357310]
+script = ExtResource("1_5nj3a")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1734745133]
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CanvasLayer" unique_id=1855285722]
+unique_name_in_owner = true
+offset_left = 2.9999998
+offset_right = 11.0
+offset_bottom = 8.0
+scale = Vector2(6.520925, 6.921303)

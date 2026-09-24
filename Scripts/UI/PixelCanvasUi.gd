@@ -38,7 +38,7 @@ func handle_mouse_motion(mouse_event: InputEventMouseMotion) -> void:
 func handle_mouse_button(mouse_event: InputEventMouseButton) -> void:
 	if mouse_event.is_action_pressed("L_CLICK"):
 		state_man.state_change.emit(Enums.GameState.left_press)
-		pixel_canvas.color_pixel(mouse_event.position.x, mouse_event.position.y, Color.INDIAN_RED)
+		pixel_canvas.color_pixel(mouse_event.position.x, mouse_event.position.y, PlayerData.pen_color)
 	if mouse_event.is_action_released("L_CLICK"):
 		state_man.state_change.emit(Enums.GameState.left_press_release)
 	return
