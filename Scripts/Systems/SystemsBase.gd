@@ -7,7 +7,7 @@ enum SystemResults
 	COULD_NOT_GET_RESOURCES_ERROR = -1,
 }
 
-enum SystemTypes {}
+enum SystemTypes { GAME_MANAGER ,STATE_MANAGER}
 
 
 @abstract func startup() -> SystemResults ;
