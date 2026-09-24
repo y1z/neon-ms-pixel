@@ -4,13 +4,14 @@ const DEFAULT_TEXTURE_SIZE: Vector2i = Vector2i(64, 64)
 
 var pixel_canvas: PixelCanvas
 var state: Enums.GameState
+var state_man : StateManager
 
 
 func _ready() -> void:
 	pixel_canvas = %canvas
 	pixel_canvas.startup(GlobalsConstants.DEFAULT_SIZE)
 	pixel_canvas.gui_input.connect(cb_gui_input)
-	var state_man : StateManager = SystemsLocator.get_state_manager() 
+	state_man = SystemsLocator.get_state_manager() 
 	state = state_man.get_current_state()
 	state_man.state_change.connect(cb_state_change)
 	pass # Replace with function body.
@@ -36,6 +37,9 @@ func handle_mouse_motion(mouse_event: InputEventMouseMotion) -> void:
 
 func handle_mouse_button(mouse_event: InputEventMouseButton) -> void:
 	if mouse_event.is_action_pressed("L_CLICK"):
-		print(pixel_canvas.color_pixel(mouse_event.position.x, mouse_event.position.y, Color.INDIAN_RED))
+		state_man.state_change.emit(Enums.GameState.left_press)
+		pixel_canvas.color_pixel(mouse_event.position.x, mouse_event.position.y, Color.INDIAN_RED)
+	if mouse_event.is_action_released("L_CLICK"):
+		state_man.state_change.emit(Enums.GameState.left_press_release)
 	return
 #endregion
