@@ -2,12 +2,12 @@
 
 enum SystemResults
 {
-	NO_ERROR = 1,
-	GENERAL_ERROR = 0,
-	COULD_NOT_GET_RESOURCES_ERROR = -1,
+	no_error = 1,
+	general_error = 0,
+	could_not_get_resources_error = -1,
 }
 
-enum SystemTypes { GAME_MANAGER ,STATE_MANAGER}
+enum SystemTypes { game_manager ,state_manager}
 
 
 @abstract func startup() -> SystemResults ;
