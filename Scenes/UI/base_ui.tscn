@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c75jf3rs3t6up"]
 
 [ext_resource type="Texture2D" uid="uid://cqsh0tyy4n0hn" path="res://Sprites/empty-square-place-holders/empty_square_white_64×64.png" id="1_34ygh"]
-[ext_resource type="Script" uid="uid://bil6eoyev8sa0" path="res://Scripts/UI/base_ui.gd" id="1_usrxl"]
+[ext_resource type="Script" uid="uid://bil6eoyev8sa0" path="res://Scripts/UI/PixelCanvasUi.gd" id="1_usrxl"]
 [ext_resource type="Script" uid="uid://o4c00ucjk5sm" path="res://Scripts/PixelCanvas.gd" id="3_p7k3d"]
 
 [node name="Control" type="Control" unique_id=436372168]
