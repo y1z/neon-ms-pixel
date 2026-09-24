@@ -2,12 +2,12 @@ class_name StateManager extends SystemBase
 
 var current_state: Enums.GameState = Enums.GameState.idle
 
-func startup() -> SystemResults :
-	return SystemResults.NO_ERROR
+func startup() ->SystemBase.SystemResults :
+	return  SystemResults.no_error
 
 
 func shutdown() -> SystemResults :
-	return SystemResults.NO_ERROR
+	return SystemResults.no_error
 
 
 func debug_string() -> String:
