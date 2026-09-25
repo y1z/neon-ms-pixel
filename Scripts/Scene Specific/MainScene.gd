@@ -11,7 +11,6 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	state_man = SystemsLocator.get_state_manager()
 	state_man.state_change.connect(cb_state_change)
-	
 	camera = CameraWithUI.new()
 	if camera_preload.can_instantiate():
 		camera = camera_preload.instantiate()

@@ -1,12 +1,13 @@
 class_name CameraWithUI extends Camera2D
 
-
 var state: Enums.GameState
-var color_picker : ColorPickerButton
+var state_man: StateManager
+var color_picker: ColorPickerButton
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var state_man := SystemsLocator.get_state_manager()
+	state_man = SystemsLocator.get_state_manager()
 	state = state_man.get_current_state()
 	state_man.state_change.connect(cb_state_change)
 	color_picker = %ColorPickerButton
@@ -15,12 +16,18 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("MOVEMENT"):
+		state_man.state_change.emit(Enums.GameState.movement)
+	if event.is_action_released("MOVEMENT"):
+		state_man.state_change.emit(Enums.GameState.idle)
+
 	if event is InputEventMouse:
 		handle_mouse_wheel_input(event)
 	if event is InputEventMouseMotion:
 		handle_mouse_movement(event)
 	if event is InputEventPanGesture:
 		handle_pan_gesture_input(event)
+
 	return
 
 
@@ -34,6 +41,8 @@ func handle_mouse_wheel_input(event: InputEventMouse) -> void:
 
 
 func handle_mouse_movement(event: InputEventMouseMotion) -> void:
+	if state != Enums.GameState.movement : return
+	self.offset += event.screen_relative
 	return
 
 
@@ -46,6 +55,7 @@ func handle_pan_gesture_input(event: InputEventPanGesture) -> void:
 
 func cb_state_change(new_state: Enums.GameState) -> void:
 	state = new_state
+
 
 func cb_color_changed(new_color: Color) -> void:
 	PlayerData.pen_color = new_color
