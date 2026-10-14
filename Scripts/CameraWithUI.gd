@@ -1,5 +1,9 @@
 class_name CameraWithUI extends Camera2D
 
+const MAX_ZOOM: Vector2 = Vector2(1000, 1000)
+const MIN_ZOOM: Vector2 = Vector2(0.10, 0.10)
+const INCREMENT_ZOOM_AMOUNT: Vector2 = Vector2(0.1, 0.1)
+
 var state: Enums.GameState
 var state_man: StateManager
 var color_picker: ColorPickerButton
@@ -20,6 +24,8 @@ func _input(event: InputEvent) -> void:
 		state_man.state_change.emit(Enums.GameState.movement)
 	if event.is_action_released("MOVEMENT"):
 		state_man.state_change.emit(Enums.GameState.idle)
+	if event.is_action_pressed("DEBUG_P"):
+		print("zoom = %s" % self.zoom)
 
 	if event is InputEventMouse:
 		handle_mouse_wheel_input(event)
@@ -27,26 +33,27 @@ func _input(event: InputEvent) -> void:
 		handle_mouse_movement(event)
 	if event is InputEventPanGesture:
 		handle_pan_gesture_input(event)
-
 	return
 
 
 #region HANDLE functions
 func handle_mouse_wheel_input(event: InputEventMouse) -> void:
 	if event.is_action_pressed("UP_WHEEL"):
-		self.zoom += Vector2(0.1, 0.1)
+		self.zoom = ExMath.clamp_vec2(self.zoom + INCREMENT_ZOOM_AMOUNT, MIN_ZOOM, MAX_ZOOM)
 	if event.is_action_pressed("DOWN_WHEEL"):
-		self.zoom += Vector2(0.1, 0.1) * (-1)
+		self.zoom = ExMath.clamp_vec2(self.zoom + (INCREMENT_ZOOM_AMOUNT * -1), MIN_ZOOM, MAX_ZOOM)
 	return
 
 
 func handle_mouse_movement(event: InputEventMouseMotion) -> void:
-	if state != Enums.GameState.movement : return
-	self.offset += event.screen_relative
-	return
+	if state != Enums.GameState.movement: return
+	var inverse_zoom_vector: Vector2 = Vector2(1.0 / zoom.x, 1.0 / zoom.y)
+	var sr: Vector2 = event.screen_relative
+	var how_much_to_move: Vector2 = Vector2(inverse_zoom_vector.x * sr.x, inverse_zoom_vector.y * sr.y)
+	self.offset += how_much_to_move
 
 
-## TODO: implement this 
+## TODO: implement this for mobile version
 func handle_pan_gesture_input(event: InputEventPanGesture) -> void:
 	var _delta := event.delta
 	return
